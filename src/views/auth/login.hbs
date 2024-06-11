@@ -1,0 +1,22 @@
+<div class="auth-brand">
+  <i class="fa-regular fa-square-check"></i>Just Do IT
+</div>
+
+<div class="auth-container">
+
+  <h3>Login</h3>
+
+  {{> forms/form-errors this}}
+
+  <form action="/login" method="post">
+    {{#each inputs}}
+      {{> forms/form-input}}
+    {{/each}}
+    <button type="submit" class="hover">Login</button>
+  </form>
+
+  <div>
+    <small>No account yet? <a href="/register">Register</a></small>
+  </div>
+
+</div>

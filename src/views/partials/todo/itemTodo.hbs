@@ -1,0 +1,18 @@
+{{#unless done}}
+  <li id="todo-{{id}}" data-task-id="{{id}}">
+    <div class="todo-handle hover">
+      <i class="fa-solid fa-up-down-left-right handle"></i>
+    </div>
+    <div class="todo-done hover">
+      <i class="fa-solid fa-check btn-done btn-action" data-action="done" data-task-id="{{id}}"></i>
+      </div>
+    <div class="todo-text" id="todo-text-{{id}}">{{description}}</div>
+    <div class="todo-edit hover">
+      <i class="fa-solid fa-pen-to-square btn-edit btn-action" data-action="edit" data-task-id="{{id}}"
+        data-task-description="{{description}}"></i>
+        </div>
+    <div class="todo-delete hover">
+      <i class="fa-regular fa-trash-can btn-delete btn-action" data-action="delete" data-task-id="{{id}}"></i>
+    </div>
+  </li>
+{{/unless}}

@@ -1,0 +1,16 @@
+<header>
+  <div class="brand">
+    <a href="/"><i class="fa-regular fa-square-check"></i>Just Do IT</a>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="/" title="Tasks"><i class="fa-solid fa-list-check"></i></a></li>
+      <li><a href="/profile/{{user.id}}" title="Profile"><i class="fa-regular fa-user"></i> </a></li>
+      <li>
+        <form action="/logout" method="post">
+          <button type="submit" class="btn-logout" title="Logout"><i class="fa-solid fa-power-off"></i></button>
+        </form>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,42 @@
+@baseUrl = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0aW1AZXhhbXBsZS5jb20iLCJpYXQiOjE2NzkyMzg0ODgsImV4cCI6MTY3OTI0OTI4OH0.o27jIAMFNRcbJIBRKO2SVxlQiG6DFL3XTcBry8G_IqI
+
+# Get all categories
+GET {{baseUrl}}/api/category HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Get one category by id
+GET {{baseUrl}}/api/category HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id": 2
+}
+
+### Post a new category
+POST {{baseUrl}}/api/category HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+  {
+    "name": "delete me too",
+    "userId": 1
+  }
+
+### Update a category by id
+# (category id in url)
+PUT {{baseUrl}}/api/category HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id": 71,
+  "name": "Never forget to delete me"
+}
+
+### Delete a category by id
+# (category id in url)
+DELETE {{baseUrl}}/api/category/71 HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json

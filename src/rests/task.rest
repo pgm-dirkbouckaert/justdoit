@@ -1,0 +1,45 @@
+@baseUrl = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0aW1AZXhhbXBsZS5jb20iLCJpYXQiOjE2NzkyMzg0ODgsImV4cCI6MTY3OTI0OTI4OH0.o27jIAMFNRcbJIBRKO2SVxlQiG6DFL3XTcBry8G_IqI
+
+# Get all tasks
+GET {{baseUrl}}/api/task HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Get one task by id
+GET {{baseUrl}}/api/task HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id": 2
+}
+
+### Post a new task
+POST {{baseUrl}}/api/task HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+  {
+    "userId": 1,
+    "task": {
+      "description": "Do some cleaning 3",
+      "category": { "name": "never forget to delete me" }
+    }
+  }
+
+### Update a task by id
+# (task id in url)
+PUT {{baseUrl}}/api/task/71 HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "description": "Don't forget to delete me 2",
+  "done": false
+}
+
+### Delete a task by id
+# (task id in url)
+DELETE {{baseUrl}}/api/task/65 HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json

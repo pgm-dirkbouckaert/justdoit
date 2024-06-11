@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0aW1AZXhhbXBsZS5jb20iLCJpYXQiOjE2NzkyMzg0ODgsImV4cCI6MTY3OTI0OTI4OH0.o27jIAMFNRcbJIBRKO2SVxlQiG6DFL3XTcBry8G_IqI
+
+# Get all users
+GET {{baseUrl}}/api/admin/user HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Get one user by id
+GET {{baseUrl}}/api/admin/user HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id": 4
+}
+
+### Post a new user
+POST {{baseUrl}}/api/admin/user HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstname": "Peter",
+  "lastname": "Parker",
+  "email": "peter@example.com"
+}
+
+### Update a user by id
+# (user id in url)
+PUT {{baseUrl}}/api/admin/user/3 HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstname": "Peter",
+  "lastname": "Parker",
+  "email": "peter@example.com"
+}
+
+### Delete a user by id
+# (user id in url)
+DELETE {{baseUrl}}/api/admin/user/3 HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json

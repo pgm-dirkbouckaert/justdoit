@@ -1,0 +1,36 @@
+body {
+  background-color: hsl(0, 0%, 85%);
+  color: hsl(0, 0%, 0%);
+}
+
+header {
+  background-color: hsl(0, 0%, 90%);
+  border-bottom: 1px solid hsl(0, 0%, 70%);
+}
+
+.switch-theme {
+  background-color: hsl(0, 0%, 100%);
+}
+
+.categories,
+.profile-actions {
+  background-color: hsl(0, 0%, 90%);
+}
+
+.category-list li.active,
+.profile-actions-list li.active {
+  background-color: hsl(0, 0%, 83%);
+}
+
+.todo-list li,
+.done-list li {
+  background-color: hsl(0, 0%, 100%);
+}
+
+.handle,
+.btn-done,
+.btn-restore,
+.btn-delete,
+.btn-edit {
+  color: hsl(0, 0%, 90%);
+}

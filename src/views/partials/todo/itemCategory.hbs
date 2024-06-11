@@ -1,0 +1,16 @@
+<li class="{{#ifEq name @root.currentCategoryName}}active{{/ifEq}}" id="category-{{id}}">
+  <a href="/{{name}}">{{name}}</a>
+  {{#unless (isEqual name "default") }}
+    {{#ifEq name @root.currentCategoryName}}
+      <i  class="fa-regular fa-square-minus btn-delete-category hover" 
+          id="btn-delete-category-{{id}}" 
+          title="Delete category"
+          data-category-id="{{id}}"></i>
+      <i class="fa-solid fa-pen-to-square btn-edit-category hover"
+         id="btn-edit-category-{{id}}"
+         title="Edit category"
+         data-category-id="{{id}}"
+         data-category-name="{{name}}"></i>
+    {{/ifEq}}
+  {{/unless}}
+</li>

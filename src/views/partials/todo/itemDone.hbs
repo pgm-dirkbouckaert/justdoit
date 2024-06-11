@@ -1,0 +1,11 @@
+{{#if done}}
+  <li id="todo-{{id}}">
+    <div class="done-text">{{description}}</div>
+    <div class="done-restore hover">
+      <i class="fa-solid fa-rotate-right btn-restore btn-action" data-action="restore" data-task-id="{{id}}"></i>
+    </div>
+    <div class="done-delete hover">
+      <i class="fa-regular fa-trash-can btn-delete btn-action" data-action="delete" data-task-id="{{id}}"></i>
+    </div>
+  </li>
+{{/if}}

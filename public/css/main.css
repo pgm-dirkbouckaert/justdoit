@@ -1,0 +1,597 @@
+:root {
+  --color-teal: hsl(180, 100%, 25%);
+  --color-teal-light: hsl(180, 50%, 40%);
+  --color-blue: hsl(213, 86%, 26%);
+  --color-red-dark: hsl(0, 100%, 30%);
+  --color-darkgreen: hsl(120, 100%, 20%);
+  --color-black: hsl(0, 0%, 15%);
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: hsl(0, 0%, 0%);
+  color: hsl(0, 0%, 80%);
+  margin: 0 auto;
+  width: calc(100% - 2rem);
+  min-width: 20rem;
+  max-width: 60rem;
+}
+
+body.modal-visible header,
+body.modal-visible .switch-theme,
+body.modal-visible main {
+  opacity: 0.4;
+}
+
+body.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 400;
+}
+
+.hover {
+  transition: all 0.3s ease;
+}
+
+.hover:hover {
+  filter: brightness(120%);
+}
+
+.hidden {
+  display: none;
+}
+
+.not-visible {
+  opacity: 0;
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.bg-white {
+  background-color: hsl(0, 0%, 100%);
+}
+
+/* AUTH PAGES 
+*****************/
+.auth-brand {
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.auth-brand .fa-square-check {
+  color: var(--color-teal);
+  padding-right: 0.5rem;
+}
+
+.auth-container {
+  width: calc(100% - 2rem);
+  max-width: 20rem;
+  background-color: hsl(0, 0%, 95%);
+  color: var(--color-black);
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.auth h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.auth .form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth .form-errors {
+  list-style: none;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  background-color: hsl(355, 70%, 91%);
+  color: hsl(354, 61%, 43%);
+}
+
+.auth input {
+  border: 1px solid var(--color-teal);
+  border-radius: 5px;
+  padding: 0.25rem;
+}
+
+.auth .input-error {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.auth button {
+  cursor: pointer;
+  margin-bottom: 1rem;
+  background-color: var(--color-teal);
+  color: hsl(0, 0%, 95%);
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  padding: 0.25rem;
+}
+
+/* HEADER 
+*****************/
+header {
+  padding: 1rem;
+  font-size: 1.5rem;
+  background-color: hsl(0, 0%, 15%);
+  border-bottom: 1px solid hsl(0, 0%, 25%);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .fa-square-check {
+  color: var(--color-teal);
+  padding-right: 0.5rem;
+}
+
+header .fa-power-off,
+header .fa-user {
+  margin-left: 0.25rem;
+}
+
+header .fa-user {
+  font-size: 1.175rem;
+}
+
+header .brand a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header nav ul {
+  font-size: 1.25rem;
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+nav ul a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+nav ul a:hover,
+nav .btn-logout:hover {
+  color: var(--color-teal);
+}
+
+nav .btn-logout {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* THEME SWITCHER 
+*******************/
+.switch-theme {
+  z-index: 5;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: hsl(0, 0%, 90%);
+  width: 2rem;
+  height: 1rem;
+  border-radius: 20%;
+}
+
+.switch-theme input {
+  position: absolute;
+  left: -9999rem;
+}
+
+.switch-theme label::before {
+  cursor: pointer;
+  content: "";
+  display: block;
+  position: relative;
+  left: 0;
+  width: 1rem;
+  height: 100%;
+  background-color: var(--color-teal);
+  border-radius: 25%;
+  transition: all 0.3s ease;
+}
+
+.switch-theme input:checked ~ label::before {
+  left: calc(100% - 1rem);
+}
+
+/* MODAL 
+*********/
+.modal {
+  z-index: 10;
+  position: absolute;
+  top: -5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: hsl(0, 0%, 95%);
+  color: var(--color-black);
+  border: 1px solid var(--color-teal);
+  border-radius: 5px;
+  width: calc(100% - 4rem);
+  max-width: 25rem;
+  min-height: 7rem;
+  padding: 1rem;
+  transition: all 0.5s ease;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.visible {
+  top: 8rem;
+}
+
+.btn-close-modal {
+  cursor: pointer;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: var(--color-teal);
+  font-size: 1.5rem;
+}
+
+/* FORM TO DELETE A CATEGORY 
+****************************/
+.form-delete-category button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  width: 4rem;
+  text-align: center;
+  padding: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.form-delete-category button[type="submit"] {
+  background-color: var(--color-red-dark);
+  color: hsl(0, 0%, 95%);
+}
+
+.form-delete-category button[type="button"] {
+  background-color: var(--color-teal);
+  color: hsl(0, 0%, 95%);
+}
+
+/* MAIN 
+********/
+main {
+  z-index: 1;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: start;
+  position: relative;
+}
+
+/* CATEGORIES 
+**************/
+.categories {
+  flex: 1 0 100%;
+  background-color: hsl(0, 0%, 15%);
+}
+
+@media screen and (min-width: 37.5rem) {
+  .categories {
+    flex: 1 0 25%;
+    height: 100vh;
+  }
+}
+
+.categories .title {
+  padding: 1rem;
+}
+
+/* FORM ADD CATEGORY */
+.btn-add-category {
+  cursor: pointer;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  transition: all 0.4s ease-in-out;
+}
+
+@media screen and (min-width: 37.5rem) {
+  .btn-add-category {
+    float: right;
+  }
+}
+
+.btn-add-category.form-visible {
+  transform: rotate(45deg);
+}
+
+.form-edit-category,
+.form-add-category {
+  opacity: 0;
+  max-height: 0;
+  margin-bottom: 0;
+  transition: all 0.4s ease-in-out;
+  position: relative;
+}
+
+.form-edit-category.visible,
+.form-add-category.visible {
+  opacity: 1;
+  max-height: 200px;
+  margin-bottom: 1rem;
+}
+
+.form-edit-category input,
+.form-add-category input {
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: calc(100% - 2rem);
+  margin-left: 1rem;
+}
+
+.form-edit-category .btn-cancel-edit-category {
+  cursor: pointer;
+  position: absolute;
+  right: 1.5rem;
+  top: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--color-red-dark);
+}
+
+/* CATEGORIES LIST */
+.category-list {
+  position: relative;
+  z-index: 5;
+  list-style: none;
+  padding-left: 0;
+  height: 8rem;
+  overflow: auto;
+}
+
+@media screen and (min-width: 37.5rem) {
+  .category-list {
+    height: auto;
+  }
+}
+
+.category-list li {
+  padding: 0.5rem 0;
+  text-transform: capitalize;
+}
+
+.category-list li.active {
+  border-left: 2px solid var(--color-teal);
+  color: var(--color-teal);
+  background-color: hsl(0, 0%, 22%);
+  filter: brightness(115%);
+}
+
+.category-list a {
+  padding-left: 1rem;
+}
+
+.btn-edit-category,
+.btn-delete-category {
+  cursor: pointer;
+  float: right;
+  margin-top: 0.5rem;
+  margin-right: 1rem;
+}
+
+.btn-edit-category {
+  margin-top: 0.45rem;
+}
+
+/* TASKS 
+*********/
+.tasks {
+  flex: 1 0 100%;
+  padding: 1rem;
+  position: relative;
+}
+
+@media screen and (min-width: 37.5rem) {
+  .tasks {
+    flex: 1 0 75%;
+    height: 100vh;
+  }
+}
+
+.tasks .title {
+  padding-bottom: 1rem;
+}
+
+/* Form add task */
+.form-add-task {
+  border-radius: 5px;
+  background-color: hsl(0, 0%, 90%);
+  position: relative;
+}
+
+.form-add-task input {
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.form-add-task input:focus {
+  border: none;
+  outline: 2px solid var(--color-teal);
+}
+
+.form-add-task button {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 10%;
+  min-width: 4.25rem;
+  font-size: 1.5rem;
+  background-color: var(--color-teal);
+  color: hsl(0, 0%, 90%);
+  border: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+/* Toso list */
+.todo-list,
+.done-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.todo-list li,
+.done-list li {
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  background-color: hsl(0, 0%, 90%);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: end;
+  align-items: start;
+}
+
+@media screen and (min-width: 32rem) {
+  .todo-list li,
+  .done-list li {
+    justify-content: start;
+  }
+}
+
+/* Alert unsaved tasks */
+.alert-unsaved {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  color: white;
+  background-color: var(--color-red-dark);
+  padding: 0 0.5rem 0.25rem 0.5rem;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.alert-unsaved code {
+  color: burlywood;
+}
+
+/* Tasks */
+.handle,
+.btn-done,
+.btn-restore,
+.btn-delete,
+.btn-edit {
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  font-size: 1.125rem;
+}
+
+/* Todo handle */
+.todo-handle {
+  background-color: var(--color-blue);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+/* Todo text */
+.todo-text,
+.done-text {
+  flex: 1 0 60%;
+  min-height: 1.625rem;
+  padding: 0 0.5rem;
+  color: hsl(0, 0%, 15%);
+  font-size: 0.925rem;
+  word-break: break-word;
+}
+
+.todo-text.unsaved {
+  color: var(--color-red-dark);
+}
+
+.done-text {
+  text-decoration: line-through;
+}
+
+@media screen and (min-width: 32rem) {
+  .todo-text,
+  .done-text {
+    flex: 1 0 70%;
+  }
+}
+
+/* Mark as done */
+.todo-done {
+  background-color: var(--color-darkgreen);
+}
+
+@media screen and (min-width: 32rem) {
+  .todo-done {
+    order: initial;
+  }
+}
+
+/* Restore to do (= mark as not done) */
+.done-restore {
+  background-color: var(--color-darkgreen);
+}
+
+@media screen and (min-width: 32rem) {
+  .done-restore {
+    order: initial;
+  }
+}
+
+/* Edit todo */
+.todo-edit {
+  background-color: var(--color-teal);
+}
+
+@media screen and (min-width: 32rem) {
+  .todo-edit {
+    order: initial;
+  }
+}
+
+/* Delete todo */
+.todo-delete,
+.done-delete {
+  background-color: var(--color-red-dark);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+@media screen and (min-width: 32rem) {
+  .todo-delete,
+  .done-delete {
+    order: initial;
+  }
+}

@@ -1,0 +1,79 @@
+import AppDataSource from "../../data/dataSource.js";
+
+const taskRepo = AppDataSource.getRepository("Task");
+const categoryRepo = AppDataSource.getRepository("Category");
+
+export const getTask = async (req, res, next) => {
+  try {
+    const { id } = req.body;
+    if (!id) {
+      const tasks = await taskRepo.find({ relations: ["user", "category"] });
+      // Delete passwords
+      for (const task of tasks) delete task.user.password;
+      return res.status(200).json(tasks);
+    }
+    const task = await taskRepo.findOne({ where: { id }, relations: ["user"] });
+    if (!task) return res.status(404).json({ message: "Task was not found" });
+    delete task.user.password;
+    return res.status(200).json(task);
+  } catch (error) {
+    next(error.message);
+  }
+};
+
+export const createTask = async (req, res, next) => {
+  try {
+    const { task, userId } = req.body;
+    // const newTask = await taskRepo.save({ ...task, user: { id: userId } });
+    const categoryInRepo = await categoryRepo.findOneBy({ user: { id: userId }, name: task.category.name.trim().toLowerCase() });
+    if (!categoryInRepo) {
+      const newCategory = await categoryRepo.save({
+        name: task.category.name.trim().toLowerCase(),
+        user: { id: userId },
+      });
+      task.category.id = newCategory.id;
+      delete task.category.name;
+    } else {
+      task.category.id = categoryInRepo.id;
+      delete task.category.name;
+    }
+    const newTask = await taskRepo.save({ ...task, user: { id: userId } });
+    return res.status(201).json(newTask);
+  } catch (error) {
+    next(error.message);
+  }
+};
+
+export const updateTask = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const task = await taskRepo.findOne({ where: { id } });
+    if (!task) return res.status(404).json({ message: "Task was not found" });
+    const update = await taskRepo.save({ ...task, ...req.body });
+    return res.status(200).json(update);
+  } catch (error) {
+    next(error.message);
+  }
+};
+
+export const deleteTask = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!id) return res.status(401).json({ message: "You should supply the task ID" });
+    const task = await taskRepo.findOne({ where: { id } });
+    if (!task) return res.status(404).json({ message: "Task was not found" });
+    await taskRepo.delete(id);
+    res.status(200).json({ message: "Task was succesfully deleted" });
+  } catch (error) {
+    next(error.message);
+  }
+};
+
+export const saveSortOrder = async (req, res, next) => {
+  const sortOrderObj = req.body;
+  for (const item of sortOrderObj) {
+    const task = await taskRepo.findOne({ where: { id: item.taskId } });
+    if (task) await taskRepo.save({ ...task, sortOrder: item.sortOrder });
+  }
+  return res.status(200).json({ message: "Sort order was succesfully saved" });
+};

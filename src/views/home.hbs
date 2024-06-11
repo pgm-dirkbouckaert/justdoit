@@ -1,0 +1,54 @@
+{{!-- CATEGORIES --}}
+<nav class="categories">
+  <h3 class="title">
+    Categories 
+    <i class="fa-solid fa-plus btn-add-category hover" id="btn-add-category"></i>
+  </h3>
+  {{!-- ADD A CATEGORY --}}
+  <form action="" class="form-add-category" id="form-add-category">
+    <input type="hidden" name="userId" value="{{user.id}}">
+    <input type="text" name="name" id="input-add-category" placeholder="Add category" required>
+  </form>
+  <form action="" class="form-edit-category" id="form-edit-category">
+    <input type="hidden" name="categoryId" id="edit-category-id" value="">
+    <input type="text" name="categoryName" id="edit-category-name" placeholder="Edit category" required>
+    <i class="fa-solid fa-xmark btn-cancel-edit-category hover" id="btn-cancel-edit-category"></i>
+  </form>
+  {{!-- CATEGORY LIST --}}
+  <ul class="category-list" id="category-list">
+    {{#each categories}}
+      {{> todo/itemCategory this}}
+    {{/each}}
+  </ul>
+</nav>
+
+{{!-- TASKS --}}
+<section class="tasks">
+  <h3 class="title">Add a task</h3>
+  {{!-- ADD A TASK --}}
+  <form action="" class="form-add-task" id="form-add-task">
+    <input type="hidden" name="userId" value="{{user.id}}">
+    <input type="hidden" name="category" id="currentCategoryName" value= "{{currentCategoryName}}">
+    <input type="hidden" name="category" id="currentCategoryId" value= "{{currentCategoryId}}">
+    <input type="text" name="description" placeholder="What is your task?" required>
+    <button type="submit" class="hover">+</button>
+  </form>
+  {{!-- TODO LIST --}}
+  <div class="alert-unsaved not-visible" id="alert-unsaved">
+    You have unsaved tasks (marked in red)! Click the pencil, edit and hit <code>Enter</code> to save.
+  </div>
+  <h3 class="title {{#ifNotHasTodo tasks}}hidden{{/ifNotHasTodo}}" id="todo-list-title">To do</h3>
+  <ul class="todo-list" id="todo-list">
+    {{#each tasks}}
+      {{> todo/itemTodo this}}
+    {{/each}}
+  </ul>
+  {{!-- DONE LIST --}}
+  <br>
+  <h3 class="title {{#ifNotHasDone tasks}}hidden{{/ifNotHasDone}}" id="done-list-title">Done</h3>
+  <ul class="done-list" id="done-list">
+    {{#each tasks}}
+      {{> todo/itemDone this}}
+    {{/each}}
+  </ul>
+</section>

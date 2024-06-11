@@ -1,0 +1,18 @@
+<nav class="profile-actions">
+  <h3 class="title">Actions</h3>
+  {{> profile/nav}}
+</nav>
+
+<section class="profile">
+
+  <h3 class="title">Profile</h3>
+
+  {{> forms/form-errors this}}
+
+  <form action="/profile/{{user.id}}/edit" method="post">
+    {{#each inputs}}
+      {{> forms/form-input}}
+    {{/each}}
+    <button type="submit" class="hover">Save</button>
+  </form>
+</section>

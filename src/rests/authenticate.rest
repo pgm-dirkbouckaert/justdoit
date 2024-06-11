@@ -1,0 +1,10 @@
+@baseUrl = http://localhost:3000
+
+# Get api token
+POST {{baseUrl}}/api/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "tim@example.com",
+  "password": "artevelde"
+}

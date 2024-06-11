@@ -1,0 +1,3 @@
+src/middleware/validation/auth.js
+src/middleware/validation/profile.js
+src/middleware/validation/password.js
